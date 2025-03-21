@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import Layout from './components/Layout/Layout';
+import Users from './pages/Users';
+import Projects from './pages/Projects';
+import Analytics from './pages/Analytics';
+import Settings from './pages/Settings';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
+import { ThemeContextProvider } from './context/ThemeContext';
+import { CssBaseline } from '@mui/material';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContextProvider>
+      <CssBaseline />
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </ThemeContextProvider>
   );
 }
 
