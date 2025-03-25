@@ -5,6 +5,37 @@ import App from "./App";
 // Google Tag Manager
 // const gtmId = "GTM-MF2MHRNB";
 
+// Assuming `actions` contains the button actions like 'download' and 'upload'
+document.querySelectorAll('button').forEach((button) => {
+  button.addEventListener('click', function(event) {
+    // If the button text or action includes 'Download'
+    if (event.target.textContent.includes('Download')) {
+      // Push data to the dataLayer for GTM
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'module_interaction',
+        module_name: 'Analytics',  // You can replace this with the actual module name
+        interaction_type: 'Download Button',
+        action: 'download',
+        label: event.target.textContent // Label can be the button text or other identifiers
+      });
+    }
+
+    // If the button text includes 'Upload'
+    if (event.target.textContent.includes('Upload')) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'module_interaction',
+        module_name: 'Analytics',  // Replace with actual module name
+        interaction_type: 'Upload Button',
+        action: 'upload',
+        label: event.target.textContent // Button text as label
+      });
+    }
+  });
+});
+
+
 // Add GTM script and noscript tags dynamically to the HTML
 const addGTM = () => {
 
