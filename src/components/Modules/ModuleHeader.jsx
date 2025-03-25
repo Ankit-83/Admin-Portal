@@ -32,12 +32,12 @@ function ModuleHeader({ title, actions = ['create', 'edit', 'delete', 'download'
           </Button>
         )}
         {actions.includes('download') && (
-          <Button startIcon={<DownloadIcon />} variant="outlined" sx={{ mr: 1 }}>
+          <Button variant="outlined" sx={{ mr: 1 }}>
             Download
           </Button>
         )}
         {actions.includes('upload') && (
-          <Button startIcon={<UploadIcon />} variant="outlined">
+          <Button variant="outlined">
             Upload
           </Button>
         )}
