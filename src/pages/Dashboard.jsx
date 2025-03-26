@@ -9,14 +9,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 function Dashboard() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [view, setView] = useState('analyticsview');
+  const [view, setView] = useState('analyticview');
 
   useEffect(() => {
     const currentView = location.pathname.split('/').pop();
-    if (currentView === 'analyticsview' || currentView === 'tableview') {
+    if (currentView === 'analyticview' || currentView === 'tableview') {
       setView(currentView);
     } else {
-      navigate('analyticsview', { replace: true });
+      navigate('analyticview', { replace: true });
     }
   }, [location, navigate]);
 
@@ -53,7 +53,7 @@ function Dashboard() {
             onChange={handleViewChange}
             size="small"
           >
-            <ToggleButton value="analyticsview" aria-label="analytics view">
+            <ToggleButton value="analyticview" aria-label="analytics view">
               <AnalyticsIcon sx={{ mr: 1 }} /> Analytics View
             </ToggleButton>
             <ToggleButton value="tableview" aria-label="table view">
@@ -62,7 +62,7 @@ function Dashboard() {
           </ToggleButtonGroup>
         }
       />
-      {view === 'analyticsview' ? (
+      {view === 'analyticview' ? (
         <Box sx={{ p: 3 }}>
           <Grid container spacing={3}>
             {stats.map((stat, index) => (
