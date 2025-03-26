@@ -34,7 +34,7 @@ function AppContent() {
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/dashboard" element={<Layout onLogout={handleLogout}><Dashboard /></Layout>}>
             <Route index element={<Dashboard />} />
-            <Route path="analytics" element={<Dashboard />} />
+            <Route path="analyticsview" element={<Dashboard />} />
             <Route path="tableview" element={<Dashboard />} />
           </Route>
           <Route path="/users" element={<Layout onLogout={handleLogout}><Users /></Layout>} />
