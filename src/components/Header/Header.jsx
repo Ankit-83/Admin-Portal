@@ -9,7 +9,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useState, useContext } from 'react';
 import { ColorModeContext } from '../../context/ThemeContext';
 
-function Header({ setIsAuthenticated }) {
+function Header({ onLogout }) {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   const navigate = useNavigate();
@@ -26,10 +26,6 @@ function Header({ setIsAuthenticated }) {
 
   const handleNotificationClose = () => {
     setNotificationAnchor(null);
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
   };
 
   return (
@@ -110,7 +106,7 @@ function Header({ setIsAuthenticated }) {
         </Menu>
         <Button 
           startIcon={<LogoutIcon />}
-          onClick={handleLogout} 
+          onClick={onLogout}
           sx={{ 
             color: theme.palette.text.primary,
             '&:hover': { 

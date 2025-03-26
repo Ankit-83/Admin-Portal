@@ -1,14 +1,11 @@
 import { Box } from '@mui/material';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
-import { useState } from 'react';
 
-function Layout({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
-
+function Layout({ children, onLogout }) {
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-      <Header setIsAuthenticated={setIsAuthenticated} />
+      <Header onLogout={onLogout} />  {/* Pass onLogout to Header */}
       <Sidebar />
       <Box
         component="main"

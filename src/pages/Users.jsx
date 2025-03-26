@@ -6,6 +6,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function Users() {
   const [users, setUsers] = useState([
@@ -61,6 +62,9 @@ function Users() {
     status: 'Active'
   });
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleCreateUser = () => {
     setSelectedUser(null);
     setUserForm({
@@ -72,6 +76,12 @@ function Users() {
       status: 'Active'
     });
     setOpenDialog(true);
+    navigate('/users/adduser');
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    navigate('/users');
   };
 
   const handleEditUser = (user) => {
@@ -102,6 +112,7 @@ function Users() {
       setUsers([...users, newUser]);
     }
     setOpenDialog(false);
+    navigate('/users');
   };
 
   return (
@@ -114,7 +125,7 @@ function Users() {
             onClick={handleCreateUser}
             sx={{ mr: 2 }}
           >
-            Add User
+            Add New User
           </Button>
         }
       />
@@ -182,7 +193,7 @@ function Users() {
         </Grid>
       </Box>
 
-      <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth="sm" fullWidth>
+      <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
         <DialogTitle>{selectedUser ? 'Edit User' : 'Add New User'}</DialogTitle>
         <DialogContent>
           <Box sx={{ pt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -229,7 +240,7 @@ function Users() {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
+          <Button onClick={handleCloseDialog}>Cancel</Button>
           <Button onClick={handleSubmit} variant="contained">
             {selectedUser ? 'Save Changes' : 'Add User'}
           </Button>

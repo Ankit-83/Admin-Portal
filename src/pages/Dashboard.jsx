@@ -3,14 +3,27 @@ import ModuleHeader from '../components/Modules/ModuleHeader';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TableViewIcon from '@mui/icons-material/TableView';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function Dashboard() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [view, setView] = useState('analytics');
+
+  useEffect(() => {
+    const currentView = location.pathname.split('/').pop();
+    if (currentView === 'analytics' || currentView === 'tableview') {
+      setView(currentView);
+    } else {
+      navigate('analytics', { replace: true });
+    }
+  }, [location, navigate]);
 
   const handleViewChange = (event, newView) => {
     if (newView !== null) {
       setView(newView);
+      navigate(`/dashboard/${newView}`);
     }
   };
 
@@ -32,7 +45,7 @@ function Dashboard() {
   return (
     <Box>
       <ModuleHeader 
-        actions={['download']} 
+        actions={view === 'tableview' ? ['download'] : []} 
         customComponent={
           <ToggleButtonGroup
             value={view}
@@ -43,7 +56,7 @@ function Dashboard() {
             <ToggleButton value="analytics" aria-label="analytics view">
               <AnalyticsIcon sx={{ mr: 1 }} /> Analytics
             </ToggleButton>
-            <ToggleButton value="table" aria-label="table view">
+            <ToggleButton value="tableview" aria-label="table view">
               <TableViewIcon sx={{ mr: 1 }} /> Table View
             </ToggleButton>
           </ToggleButtonGroup>

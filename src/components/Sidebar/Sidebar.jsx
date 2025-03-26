@@ -11,7 +11,7 @@ function Sidebar() {
   const location = useLocation();
   
   const modules = [
-    { name: 'Dashboard', icon: <DashboardIcon />, path: '/' },
+    { name: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
     { name: 'Users', icon: <PersonIcon />, path: '/users' },
     { name: 'Projects', icon: <FolderIcon />, path: '/projects' },
     { name: 'Analytics', icon: <AnalyticsIcon />, path: '/analytics' },
@@ -37,7 +37,7 @@ function Sidebar() {
     >
       <List sx={{ p: 2 }}>
         {modules.map((module) => {
-          const isSelected = location.pathname === module.path || 
+          const isSelected = location.pathname.startsWith(module.path) || 
                            (location.pathname === '/' && module.path === '/');
           
           return (
