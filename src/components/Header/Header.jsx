@@ -274,9 +274,10 @@ function Header({ onLogout }) {
                   onChange={(e) => setPdfDropdown1(e.target.value)}
                   displayEmpty
                 >
-                  <MenuItem value="">Select Option 1</MenuItem>
-                  <MenuItem value="1">Lorem ipsum 1</MenuItem>
-                  <MenuItem value="2">Lorem ipsum 2</MenuItem>
+                  <MenuItem value="">Select Device</MenuItem>
+                  <MenuItem value="1">Polludrone</MenuItem>
+                  <MenuItem value="2">AQbot</MenuItem>
+                  <MenuItem value="2">Dustroid</MenuItem>
                 </Select>
               </FormControl>
 
@@ -286,9 +287,10 @@ function Header({ onLogout }) {
                   onChange={(e) => setPdfDropdown2(e.target.value)}
                   displayEmpty
                 >
-                  <MenuItem value="">Select Option 2</MenuItem>
-                  <MenuItem value="1">Lorem ipsum 1</MenuItem>
-                  <MenuItem value="2">Lorem ipsum 2</MenuItem>
+                  <MenuItem value="">Select Location</MenuItem>
+                  <MenuItem value="1">Kalupur</MenuItem>
+                  <MenuItem value="2">Sanand</MenuItem>
+                  <MenuItem value="2">Thaltej</MenuItem>
                 </Select>
               </FormControl>
 
