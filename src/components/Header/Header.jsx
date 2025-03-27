@@ -99,6 +99,7 @@ function Header({ onLogout }) {
           
           <IconButton 
             onClick={handleDownload}
+            id='downloadBtn'
             sx={{ 
               mr: 2,
               color: theme.palette.text.primary,
